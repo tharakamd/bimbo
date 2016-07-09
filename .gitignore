@@ -2,6 +2,6 @@
 .pydevproject
 .idea/*
 bimbo.iml
-* in .idea/
+.idea
 .idea/modules.xml
 .idea/vcs.xml
