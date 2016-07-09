@@ -1,2 +1,7 @@
 .project
 .pydevproject
+.idea/*
+bimbo.iml
+* in .idea/
+.idea/modules.xml
+.idea/vcs.xml
