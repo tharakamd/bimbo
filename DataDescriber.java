@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.apache.spark.SparkConf;
@@ -21,7 +22,7 @@ import scala.Function1;
 import scala.collection.TraversableOnce;
 import scala.collection.immutable.ListSet;
 
-public class Miner {
+public class DataDescriber {
 
 	public static void main(String[] args) {
 		// file parths
@@ -79,9 +80,24 @@ public class Miner {
 		df = sqlContext.createDataFrame(res, TrainRecord.class);
 		
 		// calculating max and min values
-		DataFrame largest_sales_deport_id = df.describe("sales_depot_id");
-		largest_sales_deport_id.printSchema();
-		largest_sales_deport_id.show();
+		ArrayList<String> properties = new ArrayList<>();
+		properties.add("week_number");
+		properties.add("sales_depot_id");
+		properties.add("sales_channel_id");
+		properties.add("route_id");
+		properties.add("client_id");
+		properties.add("product_id");
+		properties.add("sales_units");
+		properties.add("sales");
+		properties.add("return_units");
+		properties.add("returns");
+		properties.add("demand");
+		for(String property:properties){
+			DataFrame propInfo = df.describe(property);
+			propInfo.printSchema();
+			propInfo.show();
+			propInfo.coalesce(1).write().format("com.databricks.spark.csv").save( property + ".csv");
+		}
 		/*df.printSchema();
 		df.show();*/
 		
