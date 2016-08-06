@@ -75,10 +75,10 @@ public class GradientBoostedTreeRegression {
 						return rec;
 					}
 				});
-		df = sqlContext.createDataFrame(res, TrainRecord.class);
-		JavaRDD<LabeledPoint> resRow  = res.map(new Function<TrainRecord, LabeledPoint>() {
+		df = sqlContext.createDataFrame(res, ReducedRecordsTMP.class);
+		JavaRDD<LabeledPoint> resRow  = res.map(new Function<ReducedRecordsTMP, LabeledPoint>() {
 			@Override
-			public LabeledPoint call(TrainRecord record) throws Exception {
+			public LabeledPoint call(ReducedRecordsTMP record) throws Exception {
 				return null;
 			}
 			

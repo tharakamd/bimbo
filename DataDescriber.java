@@ -58,11 +58,11 @@ public class DataDescriber {
 		System.out.println(d);
 */		
 		// mapping data
-		JavaRDD<TrainRecord> res = df.javaRDD().map(new Function<Row, TrainRecord>() {
+		JavaRDD<ReducedRecordsTMP> res = df.javaRDD().map(new Function<Row, ReducedRecordsTMP>() {
 
 			@Override
-			public TrainRecord call(Row row) throws Exception {
-				TrainRecord rec = new TrainRecord();
+			public ReducedRecordsTMP call(Row row) throws Exception {
+				ReducedRecordsTMP rec = new ReducedRecordsTMP();
 				rec.setWeek_number(row.getInt(0));
 				rec.setSales_depot_id(row.getInt(1));
 				rec.setSales_channel_id(row.getInt(2));
@@ -77,7 +77,7 @@ public class DataDescriber {
 				return rec;
 			}
 		});
-		df = sqlContext.createDataFrame(res, TrainRecord.class);
+		df = sqlContext.createDataFrame(res, ReducedRecordsTMP.class);
 		
 		// calculating max and min values
 		ArrayList<String> properties = new ArrayList<>();

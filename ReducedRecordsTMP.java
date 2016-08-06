@@ -1,7 +1,7 @@
 import java.io.Serializable;
 
 
-public class TrainRecord implements Serializable{
+public class ReducedRecordsTMP implements Serializable{
 	private int week_number;
 	private int sales_depot_id;
 	private int sales_channel_id;
